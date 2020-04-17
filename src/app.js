@@ -31,16 +31,11 @@ app.put("/repositories/:id", (request, response) => {
   if(!isUuid(id)) {
     return response.status(400).json({error: 'invalid project id'})
   }
-  repositorieIndex = repositories.findIndex( repo => repo.id === id);
+
+  const repositorieIndex = repositories.findIndex( repo => repo.id === id);
 
   if(repositorieIndex < 0) {
     return response.status(400).json({error: "Repositorie ID not found"})
-  }
-
-  const repositorie = {
-    title,
-    url,
-    techs
   }
 
   repositories[repositorieIndex] = {...repositories[repositorieIndex],  title, url, techs };
@@ -52,7 +47,7 @@ app.put("/repositories/:id", (request, response) => {
 app.delete("/repositories/:id", (request, response) => {
   const { id } = request.params;
 
-  repositorieIndex = repositories.findIndex( repo => repo.id === id);
+  const repositorieIndex = repositories.findIndex( repo => repo.id === id);
 
   if(repositorieIndex < 0) {
     return response.status(400).json({error: "Repositorie ID not found"})
@@ -67,7 +62,7 @@ app.delete("/repositories/:id", (request, response) => {
 app.post("/repositories/:id/like", (request, response) => {
   const { id } = request.params;
 
-  repositorieIndex = repositories.findIndex( repo => repo.id === id);
+  const repositorieIndex = repositories.findIndex( repo => repo.id === id);
 
   if(repositorieIndex < 0) {
     return response.status(400).json({error: "Repositorie ID not found"})
